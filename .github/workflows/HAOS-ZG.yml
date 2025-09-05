@@ -81,10 +81,10 @@ jobs:
           cd operating-system
           git submodule update --init
           echo "replace key information"
-          sed -i 's|version.home-assistant.io|gitee.com/wuwzn/version/raw/master/|g' buildroot-external/package/hassio/hassio.mk
+          sed -i 's|version.home-assistant.io|gitee.com/wuwzn/version/raw/master|g' buildroot-external/package/hassio/hassio.mk
           sed -i 's|ghcr.io/home-assistant|ghcr.nju.edu.cn/wuwweizn|g' buildroot-external/package/hassio/dind-import-containers.sh
           sed -i 's|ghcr.io/home-assistant|ghcr.nju.edu.cn/wuwweizn|g' buildroot-external/rootfs-overlay/usr/sbin/hassos-supervisor
-          sed -i 's|checkonline.home-assistant.io|gitee.com/wuwzn/version/raw/master/|g' buildroot-external/rootfs-overlay/etc/NetworkManager/NetworkManager.conf
+          sed -i 's|checkonline.home-assistant.io|gitee.com/wuwzn/version/raw/master|g' buildroot-external/rootfs-overlay/etc/NetworkManager/NetworkManager.conf
           sed -i 's|time.cloudflare.com|cn.ntp.org.cn|g' buildroot-external/rootfs-overlay/etc/systemd/timesyncd.conf
           sed -i 's|green}_defconfig)|green,panther_x2,ihost,orangepi_cm4}_defconfig)|' scripts/update-kernel-upstream.sh
           sed -i '/^set -e$/a export FORCE_UNSAFE_CONFIGURE=1' scripts/enter.sh
