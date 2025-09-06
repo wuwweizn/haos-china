@@ -153,4 +153,4 @@ jobs:
           tag: ${{ env.HASSOS_VERSION }}
           overwrite: true
           file_glob: true
-          body: "Home Assistant 国内版镜像，是专为中国大陆用户优化的 Home Assistant 系统镜像。通过替换系统依赖源、Python 包源、Docker 镜像源，解决了官方镜像在国内下载速度慢、部分依赖无法安装的问题。用户可直接使用该镜像安装或升级 Home Assistant，实现开箱即用、快速稳定。"
+          body: "Home Assistant 国内版镜像，是专为中国大陆用户优化的 Home Assistant 系统镜像。通过替换了版本检测源、Supervisor 镜像源、联网检测源、NTP 服务，预设为中国时区，优化了国内使用环境。解决了官方镜像在国内下载速度慢、部分依赖无法安装的问题。用户可直接使用该镜像安装或升级 Home Assistant，实现开箱即用、快速稳定。"
