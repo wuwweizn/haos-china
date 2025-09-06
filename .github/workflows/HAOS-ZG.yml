@@ -1,4 +1,4 @@
-name: HAOS-CN
+name: HAOS-ZG
 on:
   workflow_dispatch:
     inputs:
@@ -48,7 +48,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v5
         
-      - name: Get HAOS-CN version
+      - name: Get HAOS-ZG version
         id: get_haos_version
         run: |
           ver=$(curl -s https://api.github.com/repos/home-assistant/operating-system/releases/latest | jq -r '.tag_name')
@@ -153,4 +153,4 @@ jobs:
           tag: ${{ env.HASSOS_VERSION }}
           overwrite: true
           file_glob: true
-          body: "国内Home Assistant OS，不修改任何系统内的其它任何信息，只做加速处理。"
+          body: "Home Assistant 国内版镜像，是专为中国大陆用户优化的 Home Assistant 系统镜像。通过替换系统依赖源、Python 包源、Docker 镜像源，解决了官方镜像在国内下载速度慢、部分依赖无法安装的问题。用户可直接使用该镜像安装或升级 Home Assistant，实现开箱即用、快速稳定。"
