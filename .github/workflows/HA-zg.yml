@@ -1,4 +1,4 @@
-name: HAOS-ZG
+name: HA-ZG
 on:
   workflow_dispatch:
     inputs:
