@@ -70,9 +70,9 @@ jobs:
           git submodule update --init
 
           echo "Replace key information"
+          # 替换国内 HA 镜像源
           sed -i 's|version.home-assistant.io|version.hasscn.top|g' buildroot-external/package/hassio/hassio.mk
-          sed -i 's|ghcr.io/home-assistant|ghcr.nju.edu.cn/ha-china|g' buildroot-external/package/hassio/dind-import-containers.sh
-          sed -i 's|ghcr.io/home-assistant|ghcr.nju.edu.cn/ha-china|g' buildroot-external/rootfs-overlay/usr/sbin/hassos-supervisor
+          sed -i 's|ghcr.io/home-assistant|ghcr.io/ha-china/supervisor|g' buildroot-external/rootfs-overlay/usr/sbin/hassos-supervisor
           sed -i 's|checkonline.home-assistant.io|version.hasscn.top|g' buildroot-external/rootfs-overlay/etc/NetworkManager/NetworkManager.conf
           sed -i 's|time.cloudflare.com|cn.ntp.org.cn|g' buildroot-external/rootfs-overlay/etc/systemd/timesyncd.conf
           sed -i 's|green}_defconfig)|green,panther_x2,ihost}_defconfig)|' scripts/update-kernel-upstream.sh
@@ -106,22 +106,9 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
 
-      - name: Pull required ha-china images
+      - name: Pull ha-china Supervisor image
         run: |
-          images=("haos-supervisor:latest" "homeassistant:latest")
-          for img in "${images[@]}"; do
-            count=0
-            max_retries=3
-            until docker pull ghcr.nju.edu.cn/ha-china/$img; do
-              count=$((count + 1))
-              if [ $count -ge $max_retries ]; then
-                echo "Failed to pull $img after $count attempts"
-                exit 1
-              fi
-              echo "Retry pulling $img in 10s... ($count/$max_retries)"
-              sleep 10
-            done
-          done
+          docker pull ghcr.io/ha-china/supervisor/amd64-hassio-supervisor:latest
 
       - name: Build
         shell: 'script -q -e -c "bash {0}"'
