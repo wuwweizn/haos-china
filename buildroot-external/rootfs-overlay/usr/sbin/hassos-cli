@@ -21,11 +21,11 @@ hacs() {
     if [ ! -d "$hacs_dir" ]; then
         local attempts=0
         local max_attempts=10
-        local github_url="https://github.com/hacs-china/integration/releases/latest/download/hacs.zip"
+        local hacs_url="https://github.com/hacs-china/integration/releases/latest/download/hacs.zip"
         mkdir -p "$hacs_dir"
         while [ $attempts -lt $max_attempts ]; do
             rm -rf "$hacs_dir"/*
-            curl --retry 5 --retry-connrefused -C - -L -o "${hacs_dir}hacs.zip" "$github_url" && cd "$hacs_dir" && unzip hacs.zip && rm -rf hacs.zip
+            curl --retry 5 --retry-connrefused -C - -L -o "${hacs_dir}hacs.zip" "$hacs_url" && cd "$hacs_dir" && unzip hacs.zip && rm -rf hacs.zip
             docker restart homeassistant
             sleep 5
             break
