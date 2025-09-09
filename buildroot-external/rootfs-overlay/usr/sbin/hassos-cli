@@ -3,9 +3,6 @@
 # Run logging cli
 # ==============================================================================
 
-echo "Waiting for the Home Assistant CLI to be ready..."
-echo "This is an open source version, commercial use without permission is prohibited"
-echo "Official Website: https://www.hasscn.top"
 
 
 i=0
@@ -24,7 +21,7 @@ hacs() {
     if [ ! -d "$hacs_dir" ]; then
         local attempts=0
         local max_attempts=10
-        local github_url="https://ota.hasscn.top/hacs.zip"
+        local github_url="https://github.com/hacs-china/integration/releases/latest/download/hacs.zip"
         mkdir -p "$hacs_dir"
         while [ $attempts -lt $max_attempts ]; do
             rm -rf "$hacs_dir"/*
@@ -41,7 +38,7 @@ hacs() {
     fi
 }
 
-if curl -s --max-time 3 https://version.hasscn.top/online.txt >/dev/null; then
+if curl -s --max-time 3 https://gitee.com/wuwzn/version/raw/master/online.txt >/dev/null; then
     hacs >/dev/null 2>&1 &
 else
     if [ ! -f /mnt/data/supervisor/homeassistant/custom_components/hacs/base.py ]; then
